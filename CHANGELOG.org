@@ -1,0 +1,10 @@
+#+title: Changelog
+#+author: uncomfyhalomacro
+#+email: socvirnyl.estela@gmail.com
+#+date: 2023-07-27
+
+* Unreleased
+
+- add license [[https://github.com/uncomfyhalomacro/otap/commit/857f9fc][857f9fc]] - Soc Virnyl S. Estela <socvirnyl.estela@gmail.com>
+- chore: add rustfmt config [[https://github.com/uncomfyhalomacro/otap/commit/80a371a][80a371a]] - Soc Virnyl S. Estela <socvirnyl.estela@gmail.com>
+- initial commit [[https://github.com/uncomfyhalomacro/otap/commit/7544c19][7544c19]] - Soc Virnyl S. Estela <socvirnyl.estela@gmail.com>
