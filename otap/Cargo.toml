@@ -1,7 +1,12 @@
 [package]
 name = "otap"
 version = "0.1.0"
+description = "Command line utility for working with Open Build Service."
 edition = "2021"
+authors = [
+  "Soc Virnyl Estela <contact@uncomfyhalomacro.pl>"
+]
+license = "MPL-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
