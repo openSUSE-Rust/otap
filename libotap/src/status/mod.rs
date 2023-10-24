@@ -3,6 +3,8 @@ use quick_xml::{de::from_str, DeError};
 use serde::Deserialize;
 use serde::Serialize;
 
+use std::str::FromStr;
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "snake_case")]
 pub struct StatusMessages {
@@ -27,11 +29,22 @@ pub struct StatusMessage {
 }
 
 // TODO Some methods are similar with `StatusMessage` and `StatusMessages`. This could be a possible trait impl
-impl StatusMessages {
-    pub fn from_str(xml_str: &str) -> Result<Self, DeError> {
+
+impl FromStr for StatusMessages {
+    type Err = DeError;
+    fn from_str(xml_str: &str) -> Result<Self, DeError> {
         from_str::<StatusMessages>(xml_str)
     }
+}
 
+impl FromStr for StatusMessage {
+    type Err = DeError;
+    fn from_str(xml_str: &str) -> Result<Self, DeError> {
+        from_str::<StatusMessage>(xml_str)
+    }
+}
+
+impl StatusMessages {
     pub fn list_messages(self, limit: Option<usize>) -> Option<Vec<StatusMessage>> {
         if !self.status_message.is_empty() {
             Some(match limit {
@@ -43,7 +56,7 @@ impl StatusMessages {
         }
     }
 
-    pub fn get_msg_by_id(&self, id: u64) -> Result<String, StatusError> {
+    pub fn get_messages_by_id(&self, id: u64) -> Result<String, StatusError> {
         for status_message in self.status_message.iter() {
             if status_message.id == id {
                 return Ok(status_message.message.clone());
@@ -52,7 +65,7 @@ impl StatusMessages {
         Err(StatusError::NonExistentId(id))
     }
 
-    pub fn get_status_msgs_by_id(&self, id: u64) -> Result<StatusMessage, StatusError> {
+    pub fn get_status_messages_by_id(&self, id: u64) -> Result<StatusMessage, StatusError> {
         for status_message in self.status_message.iter() {
             if status_message.id == id {
                 return Ok(status_message.clone());
@@ -61,7 +74,10 @@ impl StatusMessages {
         Err(StatusError::NonExistentId(id))
     }
 
-    pub fn get_status_msgs_by_user(&self, user: &str) -> Result<Vec<StatusMessage>, StatusError> {
+    pub fn get_status_messages_by_user(
+        &self,
+        user: &str,
+    ) -> Result<Vec<StatusMessage>, StatusError> {
         let mut status_messages_from_user: Vec<StatusMessage> = Vec::new();
         for status_message in self.status_message.iter() {
             if status_message.user == user {
@@ -84,11 +100,7 @@ pub enum StatusError {
 }
 
 impl StatusMessage {
-    pub fn from_str(xml_str: &str) -> Result<Self, DeError> {
-        from_str::<StatusMessage>(xml_str)
-    }
-
-    pub fn get_msg_by_id(self, id: u64) -> Result<String, StatusError> {
+    pub fn get_messages_by_id(self, id: u64) -> Result<String, StatusError> {
         if self.id != id {
             return Err(StatusError::NonExistentId(id));
         };
