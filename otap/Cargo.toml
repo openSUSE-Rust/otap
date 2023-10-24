@@ -12,3 +12,7 @@ license = "MPL-2.0"
 
 [dependencies]
 libotap = { version = "0.1", path = "../libotap" }
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+url = { version = "2.4", features = ["serde"] }
+
