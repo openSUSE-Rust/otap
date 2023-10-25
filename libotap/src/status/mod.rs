@@ -1,7 +1,28 @@
 use crate::consts::LIST_MESSAGES_LIMIT;
+
+use hifitime::Epoch;
 use quick_xml::{de::from_str, DeError};
 use serde::Deserialize;
 use serde::Serialize;
+
+mod hifitime_epoch_serde {
+    use hifitime::efmt::consts::ISO8601;
+    use hifitime::prelude::*;
+    use serde::de::Error;
+    use serde::Deserialize;
+    use serde::Deserializer;
+    use serde::Serialize;
+    use serde::Serializer;
+    pub fn serialize<S: Serializer>(epoch: &Epoch, serializer: S) -> Result<S::Ok, S::Error> {
+        let time = format!("{}", Formatter::new(epoch.to_owned(), ISO8601));
+        time.serialize(serializer)
+    }
+
+    pub fn deserialize<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Epoch, D::Error> {
+        let time: String = Deserialize::deserialize(deserializer)?;
+        time.parse::<Epoch>().map_err(D::Error::custom)
+    }
+}
 
 use std::str::FromStr;
 
@@ -19,16 +40,15 @@ pub struct StatusMessage {
     #[serde(rename = "@id")]
     id: u64,
     message: String,
-    // TODO This parameter may be shared across so this should be a struct?
     user: String,
-    // TODO Severity should be an enum
+    // TODO Should this be an enum?
     severity: String,
     scope: String,
-    // TODO We should use hifitime here or chrono but oh well
-    created_at: String,
+    #[serde(with = "hifitime_epoch_serde")]
+    created_at: Epoch,
 }
 
-// TODO Some methods are similar with `StatusMessage` and `StatusMessages`. This could be a possible trait impl
+// INFO Some methods are similar with `StatusMessage` and `StatusMessages`. This could be a possible trait impl
 
 impl FromStr for StatusMessages {
     type Err = DeError;
