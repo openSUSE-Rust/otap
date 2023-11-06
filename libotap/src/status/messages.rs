@@ -66,6 +66,13 @@ impl FromStr for StatusMessage {
 }
 
 impl StatusMessages {
+
+    /// Returns the number of messages received
+    pub fn count(self) -> u64 {
+        self.count 
+    }
+
+    /// List messages based on a limit. Default length is 1000 or defined in `LIST_MESSAGES_LIMIT`
     pub fn list_messages(self, limit: Option<usize>) -> Option<Vec<StatusMessage>> {
         if !self.status_messages.is_empty() {
             Some(match limit {
@@ -76,17 +83,19 @@ impl StatusMessages {
             None
         }
     }
+    
+    /// Get messages id.
+     pub fn get_message_by_id(&self, id: u64) -> Result<String, StatusError> {
+         for status_message in self.status_messages.iter() {
+             if status_message.id == id {
+                 return Ok(status_message.message.clone());
+             }
+         }
+         Err(StatusError::NonExistentId(id))
+     }
 
-    pub fn get_messages_by_id(&self, id: u64) -> Result<String, StatusError> {
-        for status_message in self.status_messages.iter() {
-            if status_message.id == id {
-                return Ok(status_message.message.clone());
-            }
-        }
-        Err(StatusError::NonExistentId(id))
-    }
-
-    pub fn get_status_messages_by_id(&self, id: u64) -> Result<StatusMessage, StatusError> {
+    /// Get status message object by id
+    pub fn get_status_message_by_id(&self, id: u64) -> Result<StatusMessage, StatusError> {
         for status_message in self.status_messages.iter() {
             if status_message.id == id {
                 return Ok(status_message.clone());
@@ -95,7 +104,8 @@ impl StatusMessages {
         Err(StatusError::NonExistentId(id))
     }
 
-    pub fn get_status_messages_by_user(
+    /// Get status message object by user
+    pub fn get_status_message_by_user(
         &self,
         user: &str,
     ) -> Result<Vec<StatusMessage>, StatusError> {
@@ -118,13 +128,4 @@ impl StatusMessages {
 pub enum StatusError {
     NonExistentId(u64),
     NoUserFound(String),
-}
-
-impl StatusMessage {
-    pub fn get_messages_by_id(self, id: u64) -> Result<String, StatusError> {
-        if self.id != id {
-            return Err(StatusError::NonExistentId(id));
-        };
-        Ok(self.message)
-    }
 }
