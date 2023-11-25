@@ -9,6 +9,5 @@
 pub const API_URL: &str = "https://api.opensuse.org/";
 pub const API_HEADER: &str = "Accept: application/xml; charset=utf-8";
 
-// Status Messages
-/// Default is 1000
+/// Default maximum value to be returned for `StatusMessages` is 1000
 pub const LIST_MESSAGES_LIMIT: usize = 1000;
