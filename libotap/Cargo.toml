@@ -1,15 +1,10 @@
 [package]
 name = "libotap"
-version = "0.1.0"
-description = "REST API Client library for Open Build Service."
-edition = "2021"
-authors = [
-  "Soc Virnyl Estela <contact@uncomfyhalomacro.pl>"
-]
-license = "MPL-2.0"
-homepage = "https://codeberg.org/uncomfyhalomacro/otap"
-repository = "https://codeberg.org/uncomfyhalomacro/otap"
-
+version.workspace = true
+description.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -20,3 +15,6 @@ serde = { version = ">=1.0.184", features = ["derive", "alloc"] }
 tokio = { version = "1", features = ["full"] }
 url = { version = "2.4", features = ["serde"] }
 hifitime = "3"
+
+[lints]
+workspace = true
