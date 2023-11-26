@@ -77,3 +77,24 @@ impl StatusReports {
         }
     }
 }
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "snake_case")]
+pub struct RequiredChecks {
+    #[serde(rename = "@project")]
+    project: String,
+    #[serde(rename = "@repository")]
+    repository: String,
+    #[serde(rename = "name")]
+    names: Option<Vec<String>>,
+}
+
+impl RequiredChecks {
+    pub fn has_name(self, name: &str) -> bool {
+        if let Some(names) = self.names {
+            names.iter().any(|n| n == name)
+        } else {
+            false
+        }
+    }
+}
