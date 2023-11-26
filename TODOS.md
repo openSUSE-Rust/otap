@@ -18,7 +18,7 @@
 - [ ] search
 - [ ] sources
 - [ ] staging
-- [ ] status
+- [X] status
 
 # Implement the following otap cli features for testing the library. More features for usable functionality will be added once the lib is done. Mostly `GET` requests.
 
