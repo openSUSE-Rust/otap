@@ -66,10 +66,9 @@ impl FromStr for StatusMessage {
 }
 
 impl StatusMessages {
-
     /// Returns the number of messages received
     pub fn count(self) -> u64 {
-        self.count 
+        self.count
     }
 
     /// List messages based on a limit. Default length is 1000 or defined in `LIST_MESSAGES_LIMIT`
@@ -83,16 +82,16 @@ impl StatusMessages {
             None
         }
     }
-    
+
     /// Get messages id.
-     pub fn get_message_by_id(&self, id: u64) -> Result<String, StatusError> {
-         for status_message in self.status_messages.iter() {
-             if status_message.id == id {
-                 return Ok(status_message.message.clone());
-             }
-         }
-         Err(StatusError::NonExistentId(id))
-     }
+    pub fn get_message_by_id(&self, id: u64) -> Result<String, StatusError> {
+        for status_message in self.status_messages.iter() {
+            if status_message.id == id {
+                return Ok(status_message.message.clone());
+            }
+        }
+        Err(StatusError::NonExistentId(id))
+    }
 
     /// Get status message object by id
     pub fn get_status_message_by_id(&self, id: u64) -> Result<StatusMessage, StatusError> {
