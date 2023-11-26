@@ -43,38 +43,34 @@ impl FromStr for CheckName {
 impl StatusReports {
     pub fn len(self) -> u64 {
         if let Some(checks) = self.checks {
-            checks.len() as u64
+            if checks.is_empty() {
+                0u64
+            } else {
+                checks.len() as u64
+            }
         } else {
             0u64
         }
     }
 
+    pub fn is_empty(self) -> bool {
+        self.len() == 0u64
+    }
+
     pub fn get_status_reports_by_name(self, name: &str) -> Option<Vec<CheckName>> {
-        if let Some(checks) = self.checks {
-            Some(
-                checks
-                    .iter()
-                    .filter(|check| check.name == name)
-                    .map(|check| check.to_owned())
-                    .collect(),
-            )
-        } else {
-            None
-        }
+        self.checks.map(|checks| {
+            checks.iter().filter(|check| check.name == name).map(|check| check.to_owned()).collect()
+        })
     }
 
     pub fn get_status_reports_by_required(self, required: bool) -> Option<Vec<CheckName>> {
-        if let Some(checks) = self.checks {
-            Some(
-                checks
-                    .iter()
-                    .filter(|check| check.required == required)
-                    .map(|check| check.to_owned())
-                    .collect(),
-            )
-        } else {
-            None
-        }
+        self.checks.map(|checks| {
+            checks
+                .iter()
+                .filter(|check| check.required == required)
+                .map(|check| check.to_owned())
+                .collect()
+        })
     }
 }
 
