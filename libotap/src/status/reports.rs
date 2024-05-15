@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: EUPL-1.2
+
+// Copyright (C) 2023  Soc Virnyl Estela
+
 use quick_xml::de::from_str;
 use quick_xml::DeError;
 use serde::Deserialize;
