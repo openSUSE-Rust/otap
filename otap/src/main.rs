@@ -23,6 +23,7 @@ fn main() {
         }
         Err(error) => {
             tracing::error!(error = ?error);
+            eprintln!("{}", error);
             std::process::exit(1)
         }
     }
