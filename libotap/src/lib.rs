@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: EUPL-1.2
 
 // Copyright (C) 2023  Soc Virnyl Estela
+// Copyright (C) Gordon Leung
 
-pub mod announcements;
 pub mod attributes;
 pub mod build;
 pub mod comments;
@@ -21,5 +21,3 @@ pub mod staging;
 pub mod status;
 
 pub mod consts;
-pub use crate::consts::API_HEADER;
-pub use crate::consts::API_URL;
