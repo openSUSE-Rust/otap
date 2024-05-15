@@ -7,9 +7,12 @@ use url::Url;
 
 use crate::consts::API_URL;
 
+
 #[tokio::main]
 pub async fn get_services() -> Result<(), Error> {
-    let url = Url::parse(&(API_URL.to_string() + "service")).expect("`API_URL` should have backslash");
+    // This should always construct a valid URL
+    #[allow(clippy::unwrap_used)]
+    let url = Url::parse(&(API_URL.to_string() + "service")).unwrap();
 
     let resp = reqwest::get(url).await?.text().await?;
 
