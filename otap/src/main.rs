@@ -12,9 +12,10 @@ enum Cli {
     Services
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let result = match Cli::parse() {
-        Cli::Services => get_services()
+        Cli::Services => get_services().await
     };
 
     match result {
