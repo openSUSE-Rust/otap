@@ -12,7 +12,7 @@ steps:
       branch: main
     image: opensuse/tumbleweed:latest
     commands:
-      - zypper install reuse
+      - zypper --non-interactive install reuse
       - just license-lint
 
 runs_on: [ success, failure ]
