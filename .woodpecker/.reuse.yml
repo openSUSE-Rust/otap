@@ -1,0 +1,17 @@
+matrix:
+  platform:
+    - linux/amd64
+
+platform: ${platform}
+
+steps:
+  build:
+    when:
+      event: [push, tag, pull_request]
+      branch: main
+    image: opensuse/tumbleweed:latest
+    commands:
+      - zypper install reuse
+      - just license-lint
+
+runs_on: [ success, failure ]

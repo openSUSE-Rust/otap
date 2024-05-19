@@ -15,5 +15,8 @@ check-format:
 test:
     cargo test --all-features
 
+license-lint:
+    reuse lint
+
 publish:
     cargo publish --token "${CARGO_REGISTRY_TOKEN}"
