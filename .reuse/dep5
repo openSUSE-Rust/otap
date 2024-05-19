@@ -7,7 +7,7 @@ Files: .zellij/* .editorconfig .gitignore *.md *.toml *.lock justfile
 Copyright: Soc Virnyl S. Estela <contact@uncomfyhalomacro.pl>
 License: CC0-1.0
 
-Files: libotap/*.toml libotap/*.md otap/*.toml otap/*.md
+Files: libotap/*.toml libotap/*.md otap/*.toml otap/*.md .woodpecker/*
 Copyright: Soc Virnyl S. Estela <contact@uncomfyhalomacro.pl>
 License: CC0-1.0
 
