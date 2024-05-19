@@ -1,8 +1,9 @@
 matrix:
-  platform:
+  ARCH:
     - linux/amd64
 
-platform: ${platform}
+labels:
+  platform: ${ARCH}
 
 steps:
   build:
