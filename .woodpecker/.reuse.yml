@@ -6,7 +6,7 @@ labels:
   platform: ${ARCH}
 
 steps:
-  build:
+  license:
     when:
       event: [push, tag, pull_request]
       branch: main
