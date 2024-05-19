@@ -1,3 +1,5 @@
+[![status-badge](https://ci.codeberg.org/api/badges/13337/status.svg)](https://ci.codeberg.org/repos/13337)
+
 # Otap
 
 This is the repository for Otap, an API client library and a command-line utility for [Open Build Service](https://openbuildservice.org).
