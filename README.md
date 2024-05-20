@@ -1,4 +1,4 @@
-[![status-badge](https://ci.codeberg.org/api/badges/13337/status.svg)](https://ci.codeberg.org/repos/13337)
+[![status-badge](https://ci.codeberg.org/api/badges/13339/status.svg)](https://ci.codeberg.org/repos/13339)
 
 # Otap
 
