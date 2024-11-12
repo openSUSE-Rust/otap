@@ -6,29 +6,11 @@ use crate::consts::LIST_MESSAGES_LIMIT;
 
 use std::str::FromStr;
 
+use crate::hifitime_epoch_serde;
 use hifitime::Epoch;
 use quick_xml::{de::from_str, DeError};
 use serde::Deserialize;
 use serde::Serialize;
-
-mod hifitime_epoch_serde {
-    use hifitime::efmt::consts::ISO8601;
-    use hifitime::prelude::*;
-    use serde::de::Error;
-    use serde::Deserialize;
-    use serde::Deserializer;
-    use serde::Serialize;
-    use serde::Serializer;
-    pub fn serialize<S: Serializer>(epoch: &Epoch, serializer: S) -> Result<S::Ok, S::Error> {
-        let time = format!("{}", Formatter::new(epoch.to_owned(), ISO8601));
-        time.serialize(serializer)
-    }
-
-    pub fn deserialize<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Epoch, D::Error> {
-        let time: String = Deserialize::deserialize(deserializer)?;
-        time.parse::<Epoch>().map_err(D::Error::custom)
-    }
-}
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "snake_case")]
