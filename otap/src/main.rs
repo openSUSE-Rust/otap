@@ -4,23 +4,27 @@
 // Copyright Gordon Leung
 
 use clap::Parser;
-use libotap::general_information::service::get_services;
-
-#[derive(Parser, Debug)]
-enum Cli {
-    /// Show which services are known to OBS
-    Services
-}
+use otap::cli::{Cli, Command, RequestCommand};
+use otap::credentials::{ask_credentials, Credentials};
 
 #[tokio::main]
 async fn main() {
-    let result = match Cli::parse() {
-        Cli::Services => get_services().await
+    let Cli { verbose: _, quiet: _, command } = Cli::parse();
+
+    let result = match command {
+        Command::Request(cmd) => match cmd {
+            RequestCommand::Show { id, .. } => match ask_credentials() {
+                Ok(Credentials { username, password }) => {
+                    libotap::requests::get(id, username, password).await
+                }
+                Err(err) => Err(err.to_string()),
+            },
+        },
     };
 
     match result {
         Ok(_) => {
-            tracing::info!("Completed")
+            tracing::info!("Completed");
         }
         Err(error) => {
             tracing::error!(error = ?error);
