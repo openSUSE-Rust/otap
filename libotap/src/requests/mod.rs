@@ -130,14 +130,14 @@ pub async fn get(id: usize, username: String, password: String) -> Result<Reques
 
     let status = resp.status();
     if status.is_client_error() || status.is_server_error() {
-        return match status {
+        match status {
             StatusCode::NOT_FOUND => Err("Request does not exist".to_string()),
             StatusCode::UNAUTHORIZED => Err("Credentials not accepted".to_string()),
             err => Err(format!("Unknown error with status: {err}")),
-        };
+        }
+    } else {
+        // Convert the response into &[u8], then read it into a Request
+        quick_xml::de::from_reader(resp.bytes().await.map_err(|e| e.to_string())?.deref())
+            .map_err(|e| e.to_string())
     }
-
-    // Convert the response into &[u8], then read it into a Request
-    quick_xml::de::from_reader(resp.bytes().await.map_err(|e| e.to_string())?.deref())
-        .map_err(|e| e.to_string())
 }
