@@ -4,7 +4,7 @@ use clap::{Parser, Subcommand};
 #[command(version)]
 pub struct Cli {
     /// Increase verbosity (conflicts with --quiet)
-    #[arg(long, short = 'v')]
+    #[arg(long, short = 'v', conflicts_with = "quiet")]
     pub verbose: bool,
 
     /// Be quiet, not verbose (conflicts with --verbose)
