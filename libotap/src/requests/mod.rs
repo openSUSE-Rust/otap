@@ -23,7 +23,7 @@ pub struct Request {
     pub action: RequestAction,
     pub review: Option<Vec<RequestReview>>,
     pub history: Option<Vec<RequestHistory>>,
-    pub description: String,
+    pub description: Option<String>,
 }
 #[derive(Deserialize, Debug, Clone)]
 pub struct RequestAction {
