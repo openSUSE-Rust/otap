@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: EUPL-1.2
+
+// Copyright Gordon Leung
+
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
@@ -25,7 +29,7 @@ pub enum Command {
 #[derive(Subcommand, Debug)]
 pub enum RequestCommand {
     /// Show the request itself, and generate a diff for review, if
-    /// used with the --diff option. The keyword show can be omitted if the ID is numeric.
+    /// used with the --diff option.
     Show {
         /// Generate a diff
         #[arg(long, short)]
