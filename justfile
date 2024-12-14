@@ -18,10 +18,5 @@ test:
 license-lint:
     reuse lint
 
-push-git +EXTRA_ARGS:
-    git push origin {{EXTRA_ARGS}}
-    git push github {{EXTRA_ARGS}}
-    git push sourcehut {{EXTRA_ARGS}}
-
 publish:
     cargo publish --token "${CARGO_REGISTRY_TOKEN}"
