@@ -2,15 +2,18 @@
 
 This is the repository for Otap, an API client library and a command-line utility for [Open Build Service](https://openbuildservice.org).
 
-## TODO
-
-- [ ] Create query builder for libotap
-- [ ] Plan basic features for otap cli. It should at least be similar to `osc`.
-
+Read-only mirrors are available on [GitHub][github] and [sourcehut][sourcehut].
 
 # References
 
 - https://github.com/openSUSE/osc
 - https://openbuildservice.org
 - https://api.opensuse.org/apidocs/
+
+
+<a href="https://codeberg.org/Rusty-Geckos/otap" target="_blank"><img alt="Join Us Now on Codeberg" src="./advocacy/join-us-now-on-blue-on-white.png" height="60" /></a>
+<a href="https://codeberg.org" target="_blank"><img alt="Support and Promote Codeberg" src="./advocacy/support-and-promote-blue-on-white.png" height="60" /></a>
+
+[github]: https://github.com/openSUSE-Rust/otap
+[sourcehut]: https://git.sr.ht/~uncomfy/otap
 
