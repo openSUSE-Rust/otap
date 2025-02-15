@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: EUPL-1.2
 
 // Copyright (C) 2023  Soc Virnyl Estela
-// Copyright Gordon Leung
+// Copyright litma leung
 
 use clap::Parser;
 use otap::cli::{Cli, Command, RequestCommand};

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: EUPL-1.2
 
 // Copyright (C) 2023  Soc Virnyl Estela
-// Copyright (C) Gordon Leung
+// Copyright (C) litma leung
 
 pub mod attributes;
 pub mod build;

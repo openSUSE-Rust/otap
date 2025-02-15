@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EUPL-1.2
 
-// Copyright Gordon Leung
+// Copyright litma leung
 
 // TODO: In the future copy more stuff over from https://github.com/openSUSE/osc/blob/master/osc/credentials.py
 //       so that we can just use their existing oscrc files and whatnot

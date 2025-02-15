@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: EUPL-1.2
 
-// Copyright Gordon Leung
+// Copyright litma leung
 
 use clap::{Parser, Subcommand};
 

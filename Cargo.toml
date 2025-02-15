@@ -17,7 +17,7 @@ version = "0.1.0"
 description = "API Client library for Open Build Service."
 authors = [
   "Soc Virnyl Estela <socvirnyl.estela@uncomfyhalomacro.pl>",
-  "Gordon Leung <pirateclip@protonmail.com>"
+  "litma leung <pi_cla@disroot.org>"
 ]
 edition = "2021"
 license = "EUPL-1.2"
